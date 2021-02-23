@@ -476,7 +476,8 @@ set_from_resource $i3-wm.bar.status_command i3-wm.bar.status_command i3xrocks -u
 
 # The bar configuration
 bar {
-  position $i3-wm.bar.position
+  #position $i3-wm.bar.position
+  position top
   font $i3-wm.bar.font
   separator_symbol $i3-wm.bar.separator
   status_command $i3-wm.bar.status_command
@@ -526,4 +527,3 @@ set_from_resource $i3-wm.program.2 i3-wm.program.2 :
 exec --no-startup-id $i3-wm.program.2
 set_from_resource $i3-wm.program.3 i3-wm.program.3 :
 exec --no-startup-id $i3-wm.program.3
-

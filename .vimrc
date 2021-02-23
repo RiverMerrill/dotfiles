@@ -5,14 +5,19 @@ set tabstop=2 softtabstop=2
 set shiftwidth=2
 set expandtab
 set smartindent
-set nu
+set rnu
+set scrolloff=8
 set nowrap
 set smartcase
+set ignorecase
 set noswapfile
 set nobackup
 set undofile
+set undodir=~/.vim/undodir
 set incsearch
+set nohlsearch
 set termguicolors
+set colorcolumn=80
 
 " Give more space for displaying messages.
 set cmdheight=2
@@ -36,6 +41,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'
 Plug 'tpope/vim-commentary'
+Plug 'dart-lang/dart-vim-plugin'
 
 call plug#end()
 
