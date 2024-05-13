@@ -18,6 +18,7 @@ set incsearch
 set nohlsearch
 set termguicolors
 set colorcolumn=80
+set clipboard=unnamedplus
 
 " Give more space for displaying messages.
 set cmdheight=2
@@ -27,26 +28,23 @@ set cmdheight=2
 set updatetime=50
 
 call plug#begin('~/.vim/plugged')
-Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'tpope/vim-fugitive'
+Plug 'dikiaap/minimalist'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'neoclide/coc.nvim' , { 'branch' : 'release' }
 Plug 'junegunn/fzf.vim'
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-surround'
-Plug 'flazz/vim-colorschemes'
-Plug 'drewtempelmeyer/palenight.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'
 Plug 'tpope/vim-commentary'
-Plug 'dart-lang/dart-vim-plugin'
 
 call plug#end()
 
-colorscheme palenight
-set background=dark
+set t_Co=256
+colorscheme minimalist
 
 let loaded_matchparen = 1
 let mapleader = " "
@@ -67,14 +65,18 @@ nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 
 
-" Mapping for tab completion in coc
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-function! s:check_back_space() abort
+
+" use <tab> to trigger completion and navigate to the next complete item
+function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+inoremap <silent><expr> <Tab>
+      \ coc#pum#visible() ? coc#pum#confirm() :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+
+
